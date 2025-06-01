@@ -52,8 +52,12 @@ public class ProductController {
         return ResponseEntity.ok(Map.of("reverted", true));
     }
 
+}
+
+@RestController
+public class HomeController {
     @GetMapping("/")
-    public ResponseEntity<String> root() {
-        return ResponseEntity.ok("Spring Vendor API is running");
+    public String home() {
+        return "SpringVendor is running!";
     }
 }
