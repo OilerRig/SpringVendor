@@ -1,4 +1,4 @@
-package com.oilerrig.vendor.data.repository;
+package com.oilerrig.vendor.data.repository.jpa;
 
 import com.oilerrig.vendor.data.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -51,4 +51,9 @@ public class ProductController {
         productService.revertStock(request.getProductId(), request.getQuantity());
         return ResponseEntity.ok(Map.of("reverted", true));
     }
+
+    @GetMapping("/")
+    public ResponseEntity<String> root() {
+        return ResponseEntity.ok("Spring Vendor API is running");
+    }
 }

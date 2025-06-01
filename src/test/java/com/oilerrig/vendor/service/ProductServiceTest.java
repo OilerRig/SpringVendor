@@ -4,8 +4,8 @@ import com.oilerrig.vendor.data.dto.ProductResponse;
 import com.oilerrig.vendor.exception.ResourceNotFoundException;
 import com.oilerrig.vendor.data.entities.Product;
 import com.oilerrig.vendor.data.entities.ProductDetails;
-import com.oilerrig.vendor.data.repository.ProductDetailsRepository;
-import com.oilerrig.vendor.data.repository.ProductRepository;
+import com.oilerrig.vendor.data.repository.mongo.ProductDetailsRepository;
+import com.oilerrig.vendor.data.repository.jpa.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
