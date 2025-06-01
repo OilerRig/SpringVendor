@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/vendor_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1q2w3e
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/vendor_mongo
+    depends_on:
+      - postgres
+      - mongo
+
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: vendor_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1q2w3e
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo:6
+    restart: always
+    ports:
+      - "27017:27017"
