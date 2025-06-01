@@ -53,11 +53,3 @@ public class ProductController {
     }
 
 }
-
-@RestController
-public class HomeController {
-    @GetMapping("/")
-    public String home() {
-        return "SpringVendor is running!";
-    }
-}
