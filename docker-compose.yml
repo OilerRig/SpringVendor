@@ -6,27 +6,8 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/vendor_db
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: 1q2w3e
+      SPRING_DATASOURCE_URL: jdbc:postgresql://<your-azure-postgres-host>:5432/<your-db-name>?sslmode=require
+      SPRING_DATASOURCE_USERNAME: <your-username>
+      SPRING_DATASOURCE_PASSWORD: <your-password>
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/vendor_mongo
-    depends_on:
-      - postgres
-      - mongo
-
-  postgres:
-    image: postgres:15
-    restart: always
-    environment:
-      POSTGRES_DB: vendor_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1q2w3e
-    ports:
-      - "5432:5432"
-
-  mongo:
-    image: mongo:6
-    restart: always
-    ports:
-      - "27017:27017"
+      SPRING_DATA_MONGODB_URI: mongodb+srv://<user>:<password>@<your-cosmos-cluster>.mongodb.net/<your-db>?retryWrites=true&w=majority&tls=true
