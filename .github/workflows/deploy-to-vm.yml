@@ -28,9 +28,9 @@ jobs:
             docker run -d --name vendor \
               --restart unless-stopped \
               -p 8081:8081 \
-              -e SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }} \
-              -e SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }} \
-              -e SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }} \
-              -e SPRING_DATA_MONGODB_URI=${{ secrets.SPRING_DATA_MONGODB_URI }} \
-              -e SUPPLIER_ID=${{ secrets.SUPPLIER_ID }} \
+              -e "SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }}" \
+              -e "SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }}" \
+              -e "SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }}" \
+              -e "SPRING_DATA_MONGODB_URI=${{ secrets.SPRING_DATA_MONGODB_URI }}" \
+              -e "SUPPLIER_ID=${{ secrets.SUPPLIER_ID }}" \
               ${{ secrets.ACR_LOGIN_SERVER }}/vendor:latest
