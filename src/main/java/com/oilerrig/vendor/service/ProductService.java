@@ -2,8 +2,8 @@ package com.oilerrig.vendor.service;
 
 import com.oilerrig.vendor.data.dto.ProductResponse;
 import com.oilerrig.vendor.exception.ResourceNotFoundException;
-import com.oilerrig.vendor.data.entities.Product;
-import com.oilerrig.vendor.data.entities.ProductDetails;
+import com.oilerrig.vendor.data.entities.ProductEntity;
+import com.oilerrig.vendor.data.entities.ProductDetailsEntity;
 import com.oilerrig.vendor.data.repository.mongo.ProductDetailsRepository;
 import com.oilerrig.vendor.data.repository.jpa.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class ProductService {
         this.productDetailsRepository = productDetailsRepository;
     }
 
-    public List<Product> getAllProducts() {
+    public List<ProductEntity> getAllProducts() {
         return productRepository.findAll();
     }
 
@@ -29,7 +29,7 @@ public class ProductService {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
         var details = productDetailsRepository.findById(id)
-                .map(ProductDetails::getSpecs).orElse(Map.of());
+                .map(ProductDetailsEntity::getSpecs).orElse(Map.of());
 
         var response = new ProductResponse();
         response.setId(product.getId());
@@ -37,6 +37,19 @@ public class ProductService {
         response.setPrice(product.getPrice());
         response.setStock(product.getStock());
         response.setDetails(details);
+        return response;
+    }
+
+    public ProductResponse getProduct(UUID id) {
+        var product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+
+        var response = new ProductResponse();
+        response.setId(product.getId());
+        response.setName(product.getName());
+        response.setPrice(product.getPrice());
+        response.setStock(product.getStock());
+        response.setDetails(null);
         return response;
     }
 
@@ -56,11 +69,4 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void commitStock(UUID productId) {
-
-        var product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-
-        System.out.println("Stock committed for product: " + product.getName());
-    }
 }

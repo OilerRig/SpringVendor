@@ -30,6 +30,11 @@
 		<java.version>22</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+    		<groupId>com.opencsv</groupId>
+    		<artifactId>opencsv</artifactId>
+    		<version>5.9</version>
+		</dependency>
 
 		<dependency>
     		<groupId>jakarta.validation</groupId>

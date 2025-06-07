@@ -7,15 +7,15 @@ import java.util.Map;
 import java.util.UUID;
 
 @Document(collection = "productDetails")
-public class ProductDetails {
+public class ProductDetailsEntity {
 
     @Id
     private UUID id;
     private Map<String, Object> specs;
 
-    public ProductDetails() {}
+    public ProductDetailsEntity() {}
 
-    public ProductDetails(UUID id, Map<String, Object> specs) {
+    public ProductDetailsEntity(UUID id, Map<String, Object> specs) {
         this.id = id;
         this.specs = specs;
     }

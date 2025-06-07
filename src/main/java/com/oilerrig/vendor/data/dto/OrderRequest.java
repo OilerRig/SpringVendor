@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
-public class ReserveRequest {
+public class OrderRequest {
 
     @NotNull
     private UUID productId;

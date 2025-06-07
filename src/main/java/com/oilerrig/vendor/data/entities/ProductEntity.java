@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class Product {
+public class ProductEntity {
 
     @Id
     private UUID id;
@@ -14,9 +14,9 @@ public class Product {
     private double price;
     private int stock;
 
-    public Product() {}
+    public ProductEntity() {}
 
-    public Product(UUID id, String name, double price, int stock) {
+    public ProductEntity(UUID id, String name, double price, int stock) {
         this.id = id;
         this.name = name;
         this.price = price;
