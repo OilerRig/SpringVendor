@@ -5,31 +5,33 @@ import com.oilerrig.vendor.data.entities.ProductDetailsEntity;
 import com.oilerrig.vendor.data.repository.jpa.ProductRepository;
 import com.oilerrig.vendor.data.repository.mongo.ProductDetailsRepository;
 import com.opencsv.CSVReader;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-public class CsvSeeder {
+@Profile("!prod")
+public class DatabaseSeeder implements CommandLineRunner {
 
     private final ProductRepository productRepository;
     private final ProductDetailsRepository productDetailsRepository;
 
-    public CsvSeeder(ProductRepository productRepository,
-                     ProductDetailsRepository productDetailsRepository) {
+    public DatabaseSeeder(ProductRepository productRepository,
+                          ProductDetailsRepository productDetailsRepository) {
         this.productRepository = productRepository;
         this.productDetailsRepository = productDetailsRepository;
     }
 
-    public void seed() throws Exception {
-        String supplierId = System.getenv("SUPPLIER_ID");
-        if (supplierId == null || supplierId.isBlank()) {
-            System.out.println("SUPPLIER_ID not set. Skipping seed.");
-            return;
-        }
+    @Override
+    @Transactional
+    public void run(String... args) throws Exception {
+        String supplierId = "intel";
 
         String productPath = String.format("data/%s/products.csv", supplierId);
         String detailsPath = String.format("data/%s/details.csv", supplierId);

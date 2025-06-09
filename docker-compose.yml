@@ -1,13 +1,16 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    ports:
-      - "8081:8081"
+  postgres:
+    image: postgres:latest
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://<your-azure-postgres-host>:5432/<your-db-name>?sslmode=require
-      SPRING_DATASOURCE_USERNAME: <your-username>
-      SPRING_DATASOURCE_PASSWORD: <your-password>
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_DATA_MONGODB_URI: mongodb+srv://<user>:<password>@<your-cosmos-cluster>.mongodb.net/<your-db>?retryWrites=true&w=majority&tls=true
+      - 'POSTGRES_DB=SpringVendor'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=oiler'
+      - 'POSTGRES_URL=jdbc:postgresql://postgres:5432/SpringVendor'
+    ports:
+      - "5433:5432"
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
