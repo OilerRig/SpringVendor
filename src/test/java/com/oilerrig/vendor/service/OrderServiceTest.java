@@ -48,7 +48,11 @@ class OrderServiceTest {
     void getOrder_existing() {
         var id = UUID.randomUUID();
         var order = new OrderEntity();
+        var prod = new ProductEntity(1, "P", 1.0, 2);
         order.setId(id);
+        order.setProduct(prod);
+        order.setQuantity(1);
+        order.setStatus(OrderEntity.OrderStatus.APPLIED);
         when(orderRepo.findById(id)).thenReturn(Optional.of(order));
 
         OrderResponse resp = orderService.getOrder(id);

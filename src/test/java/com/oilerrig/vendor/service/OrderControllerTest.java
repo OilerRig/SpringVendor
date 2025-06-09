@@ -2,6 +2,8 @@ package com.oilerrig.vendor.controller;
 
 import com.oilerrig.vendor.data.dto.OrderRequest;
 import com.oilerrig.vendor.data.dto.OrderResponse;
+import com.oilerrig.vendor.data.entities.OrderEntity;
+import com.oilerrig.vendor.data.entities.ProductEntity;
 import com.oilerrig.vendor.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import static org.mockito.Mockito.when;
@@ -24,13 +27,16 @@ class OrderControllerTest {
 
     @Test
     void placeOrder_endpoint() throws Exception {
-        var req = new OrderRequest();
-        req.setProductId(1);
-        req.setQuantity(2);
+        var order = new OrderEntity();
+        order.setId(UUID.randomUUID());
+        var product = new ProductEntity();
+        product.setId(1);
+        order.setProduct(product);
+        order.setQuantity(2);
+        order.setStatus(OrderEntity.OrderStatus.APPLIED);
+        order.setCreatedAt(OffsetDateTime.now());
+        var resp = new OrderResponse(order);
 
-        var resp = new OrderResponse();
-        resp.setProductId(1);
-        resp.setQuantity(2);
         when(service.placeOrder(1,2)).thenReturn(resp);
 
         mvc.perform(post("/orders")
@@ -43,9 +49,16 @@ class OrderControllerTest {
     @Test
     void cancelOrder_endpoint() throws Exception {
         var id = UUID.randomUUID();
-        var resp = new OrderResponse();
-        resp.setId(id);
-        resp.setStatus("CANCELLED");
+        var order = new OrderEntity();
+        order.setId(id);
+        var product = new ProductEntity();
+        product.setId(3);
+        order.setProduct(product);
+        order.setQuantity(1);
+        order.setStatus(OrderEntity.OrderStatus.CANCELLED);
+        order.setCreatedAt(OffsetDateTime.now());
+        var resp = new OrderResponse(order);
+
         when(service.revertOrder(id)).thenReturn(resp);
 
         mvc.perform(delete("/orders/" + id))
