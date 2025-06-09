@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-@Profile("!prod")
+//@Profile("!prod") TODO, WE CAN SEED THIS IN PROD I GUESS
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final ProductRepository productRepository;
@@ -41,7 +41,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     new ClassPathResource(productPath).getInputStream()))) {
                 reader.skip(1);
                 List<ProductEntity> products = reader.readAll().stream().map(cols -> {
-                    UUID id = UUID.fromString(cols[0]);
+                    Integer id = Integer.parseInt(cols[0]);
                     String name = cols[1];
                     double price = Double.parseDouble(cols[2]);
                     int stock = Integer.parseInt(cols[3]);
@@ -60,7 +60,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     new ClassPathResource(detailsPath).getInputStream()))) {
                 reader.skip(1);
                 List<ProductDetailsEntity> details = reader.readAll().stream().map(cols -> {
-                    UUID id = UUID.fromString(cols[0]);
+                    Integer id = Integer.parseInt(cols[0]);
                     Map<String, Object> specs = Arrays.stream(cols[1].split(";"))
                             .map(pair -> pair.split(":", 2))
                             .collect(Collectors.toMap(a -> a[0], a -> a[1]));

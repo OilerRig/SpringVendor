@@ -25,7 +25,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public ProductResponse getProductWithDetails(UUID id) {
+    public ProductResponse getProductWithDetails(Integer id) {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
         var details = productDetailsRepository.findById(id)
@@ -40,7 +40,7 @@ public class ProductService {
         return response;
     }
 
-    public ProductResponse getProduct(UUID id) {
+    public ProductResponse getProduct(Integer id) {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
@@ -51,22 +51,6 @@ public class ProductService {
         response.setStock(product.getStock());
         response.setDetails(null);
         return response;
-    }
-
-    public boolean reserveStock(UUID productId, int quantity) {
-        var product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        if (product.getStock() < quantity) return false;
-        product.setStock(product.getStock() - quantity);
-        productRepository.save(product);
-        return true;
-    }
-
-    public void revertStock(UUID productId, int quantity) {
-        var product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        product.setStock(product.getStock() + quantity);
-        productRepository.save(product);
     }
 
 }

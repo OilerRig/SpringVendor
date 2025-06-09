@@ -1,8 +1,13 @@
 package com.oilerrig.vendor.service;
 
+import com.oilerrig.vendor.data.dto.OrderResponse;
+import com.oilerrig.vendor.data.entities.OrderEntity;
 import com.oilerrig.vendor.data.entities.ProductEntity;
+import com.oilerrig.vendor.data.repository.jpa.OrderRepository;
 import com.oilerrig.vendor.data.repository.jpa.ProductRepository;
 import com.oilerrig.vendor.exception.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -11,24 +16,47 @@ import java.util.UUID;
 public class OrderService {
 
     private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
 
-    public OrderService(ProductRepository productRepository) {
+    @Autowired
+    public OrderService(ProductRepository productRepository, OrderRepository orderRepository) {
         this.productRepository = productRepository;
+        this.orderRepository = orderRepository;
     }
 
-    public boolean reserveStock(UUID productId, int quantity) {
+    public OrderResponse placeOrder(int productId, int quantity) {
         ProductEntity product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        if (product.getStock() < quantity) return false;
+        if (product.getStock() < quantity) throw new ResourceNotFoundException("Not enough stock");
         product.setStock(product.getStock() - quantity);
         productRepository.save(product);
-        return true;
+
+        OrderEntity order = new OrderEntity();
+        order.setProduct(product);
+        order.setQuantity(quantity);
+        order.setStatus(OrderEntity.OrderStatus.APPLIED);
+        orderRepository.save(order);
+
+        return new OrderResponse(order);
     }
 
-    public void revertStock(UUID productId, int quantity) {
-        ProductEntity product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-        product.setStock(product.getStock() + quantity);
-        productRepository.save(product);
+    public OrderResponse getOrder(UUID orderId) {
+        OrderEntity order = orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+        return new OrderResponse(order);
+    }
+
+    public OrderResponse revertOrder(UUID orderId) {
+        OrderEntity order = orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+
+        if (order.getStatus() == OrderEntity.OrderStatus.APPLIED) {
+            ProductEntity product = order.getProduct();
+            product.setStock(product.getStock() + order.getQuantity());
+            productRepository.save(product);
+
+            order.setStatus(OrderEntity.OrderStatus.CANCELLED);
+            orderRepository.save(order);
+        }
+
+        return new OrderResponse(order);
     }
 }

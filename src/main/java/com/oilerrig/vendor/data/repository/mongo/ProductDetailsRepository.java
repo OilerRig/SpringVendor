@@ -7,5 +7,5 @@ import java.util.UUID;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ProductDetailsRepository extends MongoRepository<ProductDetailsEntity, UUID> {
+public interface ProductDetailsRepository extends MongoRepository<ProductDetailsEntity, Integer> {
 }

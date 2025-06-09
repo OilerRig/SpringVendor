@@ -1,5 +1,5 @@
 id,entries
-11111111-1111-1111-1111-111111111001,vram:24GB GDDR6X;power:450W;cooling:Triple Fan
-11111111-1111-1111-1111-111111111002,cudaCores:128;ram:4GB;type:Dev Kit
-11111111-1111-1111-1111-111111111003,hbm2e:80GB;bandwidth:2039GB/s;node:7nm
-11111111-1111-1111-1111-111111111004,cpu:Tegra X1+;audio:Dolby Atmos;aiUpscaling:true
+1,vram:24GB GDDR6X;power:450W;cooling:Triple Fan
+2,cudaCores:128;ram:4GB;type:Dev Kit
+3,hbm2e:80GB;bandwidth:2039GB/s;node:7nm
+4,cpu:Tegra X1+;audio:Dolby Atmos;aiUpscaling:true

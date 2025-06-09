@@ -3,21 +3,19 @@ package com.oilerrig.vendor.data.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.UUID;
-
 public class OrderRequest {
 
     @NotNull
-    private UUID productId;
+    private Integer productId;
 
     @Min(1)
-    private int quantity;
+    private Integer quantity;
 
-    public UUID getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(UUID productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 

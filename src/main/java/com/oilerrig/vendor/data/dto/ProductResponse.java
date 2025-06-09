@@ -4,17 +4,17 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ProductResponse {
-    private UUID id;
+    private Integer id;
     private String name;
     private double price;
     private int stock;
     private Map<String, Object> details;
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

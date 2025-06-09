@@ -5,10 +5,7 @@ import com.oilerrig.vendor.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 
 @RestController
@@ -27,12 +24,12 @@ public class ProductController {
     }
 
     @GetMapping("/{id}/details")
-    public ProductResponse getProductWithDetails(@PathVariable UUID id) {
+    public ProductResponse getProductWithDetails(@PathVariable Integer id) {
         return productService.getProductWithDetails(id);
     }
 
     @GetMapping("/{id}")
-    public ProductResponse getProduct(@PathVariable UUID id) {
+    public ProductResponse getProduct(@PathVariable Integer id) {
         return productService.getProduct(id);
     }
 

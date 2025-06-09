@@ -9,7 +9,7 @@ services:
       - 'POSTGRES_USER=oiler'
       - 'POSTGRES_URL=jdbc:postgresql://postgres:5432/SpringVendor'
     ports:
-      - "5433:5432"
+      - "5434:5432"
   mongo:
     image: mongo:latest
     ports:

@@ -10,21 +10,21 @@ import java.util.UUID;
 public class ProductDetailsEntity {
 
     @Id
-    private UUID id;
+    private Integer id;
     private Map<String, Object> specs;
 
     public ProductDetailsEntity() {}
 
-    public ProductDetailsEntity(UUID id, Map<String, Object> specs) {
+    public ProductDetailsEntity(Integer id, Map<String, Object> specs) {
         this.id = id;
         this.specs = specs;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

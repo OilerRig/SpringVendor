@@ -1,11 +1,15 @@
 package com.oilerrig.vendor.controller;
 
+import com.oilerrig.vendor.data.dto.OrderResponse;
+import com.oilerrig.vendor.data.entities.OrderEntity;
 import com.oilerrig.vendor.service.OrderService;
 import com.oilerrig.vendor.data.dto.OrderRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/orders")
@@ -18,17 +22,17 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<?> placeOrder(@RequestBody @Valid OrderRequest request) {
-        boolean reserved = orderService.reserveStock(request.getProductId(), request.getQuantity());
-        if (!reserved) {
-            return ResponseEntity.badRequest().body("Insufficient stock");
-        }
-        return ResponseEntity.ok().body("Stock reserved");
+    public ResponseEntity<OrderResponse> placeOrder(@RequestBody @Valid OrderRequest request) {
+        return ResponseEntity.ok().body(orderService.placeOrder(request.getProductId(), request.getQuantity()));
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> cancelOrder(@RequestBody @Valid OrderRequest request) {
-        orderService.revertStock(request.getProductId(), request.getQuantity());
-        return ResponseEntity.ok().body("Stock reverted");
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponse> getOrder(@PathVariable UUID id) {
+        return ResponseEntity.ok().body(orderService.getOrder(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<OrderResponse> cancelOrder(@PathVariable UUID id) {
+        return ResponseEntity.ok().body(orderService.revertOrder(id));
     }
 }

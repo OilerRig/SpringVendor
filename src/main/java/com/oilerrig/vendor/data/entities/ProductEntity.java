@@ -1,33 +1,43 @@
 package com.oilerrig.vendor.data.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.util.UUID;
+import java.util.List;
 
 @Entity
+@Table(name = "product_entity")
 public class ProductEntity {
 
     @Id
-    private UUID id;
+    private Integer id;
+
+    @Column(unique = true, nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private double price;
+
+    @Column(nullable = false)
     private int stock;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private List<OrderEntity> orders;
 
     public ProductEntity() {}
 
-    public ProductEntity(UUID id, String name, double price, int stock) {
+    public ProductEntity(Integer id, String name, double price, int stock) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
