@@ -3,3 +3,14 @@ id,name,price,stock
 2,Intel Arc A770 GPU,349.99,10
 3,Intel Optane SSD 905P,499.99,5
 4,Intel NUC 13 Pro,699.99,12
+5,Intel Core i5-13600K,319.99,25
+6,Intel Xeon W-2295,1329.99,4
+7,Intel SSD 670p 2TB,179.99,15
+8,Intel Evo Laptop Platform Notebook,1299.99,9
+9,Intel H670 Motherboard,159.99,18
+10,Intel Thunderbolt Dock,229.99,10
+11,Intel Compute Stick,109.99,20
+12,Intel FPGA Agilex,2399.99,3
+13,Intel RealSense Depth Camera,399.99,7
+14,Intel Wi-Fi 6E AX210 Module,59.99,30
+15,Intel Xe GPU DG1,299.99,6
