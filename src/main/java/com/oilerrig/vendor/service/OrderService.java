@@ -7,7 +7,9 @@ import com.oilerrig.vendor.data.repository.jpa.OrderRepository;
 import com.oilerrig.vendor.data.repository.jpa.ProductRepository;
 import com.oilerrig.vendor.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +27,16 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    public OrderResponse getOrder(UUID orderId) {
+        OrderEntity order = orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+        return new OrderResponse(order);
+    }
+
+    @Retryable(
+            retryFor = { ObjectOptimisticLockingFailureException.class },
+            maxAttempts = 3,
+            backoff = @Backoff(delay = 100)
+    )
     @Transactional
     public OrderResponse placeOrder(int productId, int quantity) {
         ProductEntity product = productRepository.findById(productId)
@@ -42,11 +54,11 @@ public class OrderService {
         return new OrderResponse(order);
     }
 
-    public OrderResponse getOrder(UUID orderId) {
-        OrderEntity order = orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order not found"));
-        return new OrderResponse(order);
-    }
-
+    @Retryable(
+            retryFor = { ObjectOptimisticLockingFailureException.class },
+            maxAttempts = 3,
+            backoff = @Backoff(delay = 100)
+    )
     @Transactional
     public OrderResponse revertOrder(UUID orderId) {
         OrderEntity order = orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order not found"));

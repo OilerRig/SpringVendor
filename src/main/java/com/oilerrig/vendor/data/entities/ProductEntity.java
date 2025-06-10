@@ -11,6 +11,9 @@ public class ProductEntity {
     @Id
     private Integer id;
 
+    @Version
+    private Long version;
+
     @Column(unique = true, nullable = false)
     private String name;
 
@@ -55,6 +58,22 @@ public class ProductEntity {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public List<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderEntity> orders) {
+        this.orders = orders;
     }
 
     public int getStock() {
