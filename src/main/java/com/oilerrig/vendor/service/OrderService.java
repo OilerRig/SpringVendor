@@ -9,6 +9,7 @@ import com.oilerrig.vendor.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -24,6 +25,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    @Transactional
     public OrderResponse placeOrder(int productId, int quantity) {
         ProductEntity product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
@@ -45,6 +47,7 @@ public class OrderService {
         return new OrderResponse(order);
     }
 
+    @Transactional
     public OrderResponse revertOrder(UUID orderId) {
         OrderEntity order = orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order not found"));
 

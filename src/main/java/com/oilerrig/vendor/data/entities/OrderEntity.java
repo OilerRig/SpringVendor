@@ -20,6 +20,10 @@ public class OrderEntity {
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
     @Column(nullable = false)
     private Integer quantity;
 
@@ -50,6 +54,14 @@ public class OrderEntity {
 
     public void setProduct(ProductEntity product) {
         this.product = product;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     public Integer getQuantity() {

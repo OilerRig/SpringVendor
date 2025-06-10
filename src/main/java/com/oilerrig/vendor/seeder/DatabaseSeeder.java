@@ -2,9 +2,12 @@ package com.oilerrig.vendor.seeder;
 
 import com.oilerrig.vendor.data.entities.ProductEntity;
 import com.oilerrig.vendor.data.entities.ProductDetailsEntity;
+import com.oilerrig.vendor.data.entities.UserEntity;
 import com.oilerrig.vendor.data.repository.jpa.ProductRepository;
+import com.oilerrig.vendor.data.repository.jpa.UserRepository;
 import com.oilerrig.vendor.data.repository.mongo.ProductDetailsRepository;
 import com.opencsv.CSVReader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -16,16 +19,19 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-//@Profile("!prod") TODO, WE CAN SEED THIS IN PROD I GUESS
+//@Profile("!prod") TODO, WE CAN SEED THIS IN PROD FOR NOW
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final ProductRepository productRepository;
     private final ProductDetailsRepository productDetailsRepository;
+    private final UserRepository userRepository;
 
+    @Autowired
     public DatabaseSeeder(ProductRepository productRepository,
-                          ProductDetailsRepository productDetailsRepository) {
+                          ProductDetailsRepository productDetailsRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
         this.productDetailsRepository = productDetailsRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -73,5 +79,10 @@ public class DatabaseSeeder implements CommandLineRunner {
                 System.out.println("Could not read details CSV: " + e.getMessage());
             }
         }
+
+        // SEED USER API KEYS
+        UserEntity user = new UserEntity();
+        user.setApiKey("TESTKEY");
+        userRepository.save(user);
     }
 }
