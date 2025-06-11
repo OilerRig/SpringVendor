@@ -54,7 +54,7 @@ jobs:
       SSH_USER: ${{ secrets.VM_USER }}
       SSH_PORT: ${{ secrets.VM_SSH_PORT }}
       APP_JAR_NAME: app.jar
-      DEPLOY_PATH: /home/yoonseo/SpringVendor
+      DEPLOY_PATH: /home/baldvendor/vendor
       SERVICE_NAME: oiler-vendor
 
     steps:
