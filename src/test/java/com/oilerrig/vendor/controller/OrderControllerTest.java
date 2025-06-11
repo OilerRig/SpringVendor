@@ -1,15 +1,15 @@
 package com.oilerrig.vendor.controller;
 
-import com.oilerrig.vendor.data.dto.OrderRequest;
 import com.oilerrig.vendor.data.dto.OrderResponse;
 import com.oilerrig.vendor.data.entities.OrderEntity;
 import com.oilerrig.vendor.data.entities.ProductEntity;
 import com.oilerrig.vendor.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.OffsetDateTime;
@@ -20,10 +20,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(OrderController.class)
+@AutoConfigureMockMvc(addFilters = false)
 class OrderControllerTest {
 
     @Autowired private MockMvc mvc;
-    @MockBean private OrderService service;
+    @MockitoBean private OrderService service;
 
     @Test
     void placeOrder_endpoint() throws Exception {

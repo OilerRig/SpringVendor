@@ -3,3 +3,14 @@ id,entries
 2,vram:16GB;interface:PCIe 4.0
 3,readSpeed:2600MB/s;interface:PCIe 3.0;endurance:10PBW
 4,cpu:i7-1360P;ram:32GB;storage:1TB SSD
+5,cores:14;clock:5.1GHz;socket:LGA1700
+6,cores:18;threads:36;baseClock:3.0GHz
+7,capacity:2TB;interface:NVMe;endurance:740TBW
+8,screen:14";cpu:i7;ram:16GB;batteryLife:20hrs
+9,formFactor:ATX;chipset:H670;slots:4xDDR4
+10,ports:2xTB4;ethernet:1GbE;powerDelivery:85W
+11,formFactor:Stick;ram:4GB;storage:64GB
+12,fpgaModel:Agilex;fabric:Intel 10nm;interface:PCIe Gen4
+13,type:Depth Camera;range:0.2m-10m;fps:60
+14,band:Wi-Fi 6E;interface:M.2;bluetooth:5.2
+15,vram:6GB;interface:PCIe x8;architecture:Xe

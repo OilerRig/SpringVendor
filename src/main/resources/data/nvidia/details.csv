@@ -3,3 +3,14 @@ id,entries
 2,cudaCores:128;ram:4GB;type:Dev Kit
 3,hbm2e:80GB;bandwidth:2039GB/s;node:7nm
 4,cpu:Tegra X1+;audio:Dolby Atmos;aiUpscaling:true
+5,vram:16GB GDDR6X;power:320W;cooling:Dual Fan
+6,vram:6GB GDDR5;architecture:Turing;baseClock:1530MHz
+7,cores:512;ram:16GB LPDDR4;power:30W
+8,vram:24GB GDDR6;tensorCores:RT;formFactor:Workstation
+9,gpuCount:4xA100;ram:512GB;performance:2.5 PFLOPS
+10,vram:12GB GDDR6X;baseClock:2310MHz;boostClock:2610MHz
+11,ram:16GB;performance:100 TOPS;formFactor:SOM
+12,vram:12GB GDDR6;interface:PCIe 4.0;cooling:Dual Fan
+13,licenseType:Enterprise;features:AI/ML;support:24/7
+14,screen:15.6";gpu:RTX 4060;cpu:Ryzen 7;ram:32GB
+15,vram:16GB GDDR6;formFactor:Single Slot;cooling:Active

@@ -3,3 +3,14 @@ id,entries
 2,resolution:2560x1440;refreshRate:165Hz;panel:IPS
 3,screen:14";secondScreen:Yes;ram:32GB;gpu:RTX 4060
 4,powerStages:20+1;vrmCooling:Yes;pcie:Gen5
+5,resolution:3840x2160;hdr:HDR1400;refreshRate:144Hz
+6,resolution:3840x2160;colorAccuracy:99% AdobeRGB;connectivity:Thunderbolt 3
+7,screen:15.6";cpu:Intel i7;ram:16GB;storage:1TB SSD
+8,screen:6.78";refreshRate:165Hz;ram:18GB;battery:6000mAh
+9,screen:14";weight:880g;batteryLife:24hrs
+10,screen:16";cpu:Ryzen 9;gpu:RTX 4070;cooling:Vapor Chamber
+11,screen:15.6";gpu:RTX 4060;refreshRate:144Hz;cpu:Ryzen 7
+12,screen:17.3";cpu:Ryzen 9;gpu:RTX 4080;cooling:Intelligent
+13,screen:16";gpu:RTX A3000;certification:ISV;color:100% DCI-P3
+14,resolution:3840x2160;refreshRate:144Hz;HDR:true
+15,screen:15.6";cpu:Intel i5;storage:512GB SSD;touchscreen:Yes
