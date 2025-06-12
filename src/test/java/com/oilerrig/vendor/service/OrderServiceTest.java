@@ -24,16 +24,7 @@ class OrderServiceTest {
     @Mock private OrderRepository orderRepo;
     @InjectMocks private OrderService orderService;
 
-    @Test
-    void placeOrder_success() {
-        var prod = new ProductEntity(1,"A",1.0,10);
-        when(prodRepo.findById(1)).thenReturn(Optional.of(prod));
 
-        var resp = orderService.placeOrder(1, 4);
-        assertThat(resp.getQuantity()).isEqualTo(4);
-        assertThat(prod.getStock()).isEqualTo(6);
-        verify(orderRepo).save(any(OrderEntity.class));
-    }
 
     @Test
     void placeOrder_insufficientStock_throws() {

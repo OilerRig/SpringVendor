@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "product_entity")
+@Table(name = "products")
 public class ProductEntity {
 
     @Id
@@ -22,10 +22,6 @@ public class ProductEntity {
 
     @Column(nullable = false)
     private int stock;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private List<OrderEntity> orders;
 
     public ProductEntity() {}
 
@@ -66,14 +62,6 @@ public class ProductEntity {
 
     public void setVersion(Long version) {
         this.version = version;
-    }
-
-    public List<OrderEntity> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<OrderEntity> orders) {
-        this.orders = orders;
     }
 
     public int getStock() {

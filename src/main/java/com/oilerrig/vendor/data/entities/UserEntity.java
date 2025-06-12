@@ -3,7 +3,7 @@ package com.oilerrig.vendor.data.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_entity")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
