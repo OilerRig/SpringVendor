@@ -1,16 +1,16 @@
 id,entries
-1,socket:LGA1700;chipset:Z790;wifi:WiFi 6E
-2,resolution:2560x1440;refreshRate:165Hz;panel:IPS
-3,screen:14";secondScreen:Yes;ram:32GB;gpu:RTX 4060
-4,powerStages:20+1;vrmCooling:Yes;pcie:Gen5
-5,resolution:3840x2160;hdr:HDR1400;refreshRate:144Hz
-6,resolution:3840x2160;colorAccuracy:99% AdobeRGB;connectivity:Thunderbolt 3
-7,screen:15.6";cpu:Intel i7;ram:16GB;storage:1TB SSD
-8,screen:6.78";refreshRate:165Hz;ram:18GB;battery:6000mAh
-9,screen:14";weight:880g;batteryLife:24hrs
-10,screen:16";cpu:Ryzen 9;gpu:RTX 4070;cooling:Vapor Chamber
-11,screen:15.6";gpu:RTX 4060;refreshRate:144Hz;cpu:Ryzen 7
-12,screen:17.3";cpu:Ryzen 9;gpu:RTX 4080;cooling:Intelligent
-13,screen:16";gpu:RTX A3000;certification:ISV;color:100% DCI-P3
-14,resolution:3840x2160;refreshRate:144Hz;HDR:true
-15,screen:15.6";cpu:Intel i5;storage:512GB SSD;touchscreen:Yes
+1,socket:LGA1700;chipset:Z790;formFactor:ATX
+2,socket:AM5;chipset:B650;formFactor:ATX
+3,socket:AM5;chipset:X670E;formFactor:ATX;network:10GbE
+4,gpu:RTX 4090;vram:24GB;cooling:Triple Fan
+5,gpu:RTX 4070;vram:12GB;cooling:Dual Fan
+6,resolution:3840x2160;refreshRate:144Hz;panel:IPS
+7,resolution:2560x1440;refreshRate:165Hz;panel:IPS
+8,power:850W;efficiency:80+ Platinum;formFactor:SFX-L
+9,type:Mid Tower;rgb:Yes;material:Tempered Glass
+10,type:AIO;size:360mm;display:LCD;fans:3x120mm
+11,type:AIO;size:240mm;rgb:Yes;fans:2x120mm
+12,interface:PCIe 4.0 x16;slots:4x M.2;cooling:Passive
+13,ports:USB-C;internalHeader:Yes;speed:10Gbps
+14,interface:PCIe 3.0;ports:2x Thunderbolt 4;usb:4x USB 3.2
+15,socket:AM5;chipset:X670E;formFactor:ATX;wifi:WiFi 6E

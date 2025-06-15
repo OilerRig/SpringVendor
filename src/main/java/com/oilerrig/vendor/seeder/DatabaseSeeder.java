@@ -8,10 +8,10 @@ import com.oilerrig.vendor.data.repository.jpa.UserRepository;
 import com.oilerrig.vendor.data.repository.mongo.ProductDetailsRepository;
 import com.opencsv.CSVReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStreamReader;
@@ -19,16 +19,19 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-//@Profile("!prod") TODO, WE CAN SEED THIS IN PROD FOR NOW
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final ProductRepository productRepository;
     private final ProductDetailsRepository productDetailsRepository;
     private final UserRepository userRepository;
 
+    @Value("${app.seed.supplier:intel}")
+    private String supplierId;
+
     @Autowired
     public DatabaseSeeder(ProductRepository productRepository,
-                          ProductDetailsRepository productDetailsRepository, UserRepository userRepository) {
+                          ProductDetailsRepository productDetailsRepository,
+                          UserRepository userRepository) {
         this.productRepository = productRepository;
         this.productDetailsRepository = productDetailsRepository;
         this.userRepository = userRepository;
@@ -37,8 +40,6 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        String supplierId = "intel";
-
         String productPath = String.format("data/%s/products.csv", supplierId);
         String detailsPath = String.format("data/%s/details.csv", supplierId);
 

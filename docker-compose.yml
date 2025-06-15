@@ -14,3 +14,20 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
+  
+  springvendor:
+    build: .
+    depends_on:
+      - postgres
+      - mongo
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILE: prod
+      DDL: update
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/SpringVendor
+      SPRING_DATASOURCE_USERNAME: oiler
+      SPRING_DATASOURCE_PASSWORD: secret
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/springmongo
+      SPRING_DATA_MONGODB_PASSWORD: ""
+      APP_SEED_SUPPLIER: nvidia

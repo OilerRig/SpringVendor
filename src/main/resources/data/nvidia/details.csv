@@ -12,5 +12,5 @@ id,entries
 11,ram:16GB;performance:100 TOPS;formFactor:SOM
 12,vram:12GB GDDR6;interface:PCIe 4.0;cooling:Dual Fan
 13,licenseType:Enterprise;features:AI/ML;support:24/7
-14,screen:15.6";gpu:RTX 4060;cpu:Ryzen 7;ram:32GB
+14,screen:15.6;gpu:RTX 4060;cpu:Ryzen 7;ram:32GB
 15,vram:16GB GDDR6;formFactor:Single Slot;cooling:Active
